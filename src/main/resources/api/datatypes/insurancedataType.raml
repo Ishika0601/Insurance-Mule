@@ -1,0 +1,17 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  policyNumber: string
+  travelPlan: string
+  destination: string
+  travelFromDate: string
+  travelToDate: string
+  totalTripCost: string
+  premiumPaid: string
+  travellerList:
+    type: array
+    items: !include travellerdataType.raml
+  coverageList:
+    type: array
+    items: !include coveragedataType.raml
+      

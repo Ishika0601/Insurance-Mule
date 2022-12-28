@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="policyAdjustment" doc:id="525af637-30b8-4466-9727-2362f2c103a1" >
+		<http:request method="PUT" doc:name="policyAdjustment" doc:id="6c0d5e76-c313-4bef-bf1d-59625ddcd807" config-ref="HTTP_Request_configuration" path="/policyAdjustment"/>
+	</flow>
+	<flow name="downloadPolicy" doc:id="7351bba3-e312-4bef-a731-52876b7931fb" >
+		<http:request method="GET" doc:name="downloadPolicy" doc:id="98e450ea-2fd8-4709-8198-a4f1369ed687" config-ref="HTTP_Request_configuration" path="/downloadPolicy"/>
+	</flow>
+	<flow name="newPolicy" doc:id="5148d758-d11c-4935-bce1-e5f69028a4fa" >
+		<http:request method="GET" doc:name="newPolicy" doc:id="fc3b07b5-d45e-4aca-aa18-a170f75cb046" config-ref="HTTP_Request_configuration" path="/newPolicy"/>
+	</flow>
+	<flow name="newQuote" doc:id="a1a9451f-962c-4cec-bf03-f90cd29d08f2" >
+		<http:request method="GET" doc:name="newQuote" doc:id="a1dbc68e-64ff-40f0-bc70-5e059b45fb1a" config-ref="HTTP_Request_configuration" path="/newQuote"/>
+	</flow>
+	<flow name="policyDetails" doc:id="03f63657-4b42-4017-aaf8-a0a11aeae940" >
+		<http:request method="GET" doc:name="policyDetails" doc:id="431ff46a-364f-4642-bdb3-7c8c5e960249" config-ref="HTTP_Request_configuration" path="/policyDetails"/>
+	</flow>
+	<flow name="tripList" doc:id="3a207f3d-45cd-4b10-817a-ed116231977a" >
+		<http:request method="GET" doc:name="tripList" doc:id="4f8af2f9-f5c2-4d67-af55-4d4e2b0622e5" config-ref="HTTP_Request_configuration" path="/tripList"/>
+	</flow>
+	<flow name="duiCheck" doc:id="3006eab1-bdcb-43d1-816a-e48217090f77" >
+		<http:request method="POST" doc:name="duiCheck" doc:id="7d02cc78-724a-4e9f-afd0-85b1c8595eee" config-ref="HTTP_Request_configuration" path="/duiCheck"/>
+	</flow>
+	<flow name="paymentGateway" doc:id="654a84c9-6259-476f-9407-9a7b9ddac9a1" >
+		<http:request method="POST" doc:name="paymentGateway" doc:id="9b21958c-3c00-4939-a53e-a661ea0f78c3" config-ref="HTTP_Request_configuration" path="/paymentGateway"/>
+	</flow>
+</mule>

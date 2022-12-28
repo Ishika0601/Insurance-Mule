@@ -8,5 +8,8 @@ http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/m
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="23a92362-f93e-44a2-85df-87bc612d98d1" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<apikit:config outboundHeadersMapName="outboundHeadersMapName" httpStatusVarName="httpStatus" doc:name="Router" doc:id="9a3299ba-4154-4ae6-affe-6b6fb5235f36" name="Router" api="insuranceapi.raml" />
+	<apikit:config outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" doc:name="Router" doc:id="9a3299ba-4154-4ae6-affe-6b6fb5235f36" name="insuranceapi-config" api="insuranceapi.raml" />
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="222ec1db-4e77-4813-aafb-efd30fed3a1b" >
+		<http:request-connection host="localhost" port="8082" />
+	</http:request-config>
 </mule>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
     <flow name="insuranceapi-main">
         <http:listener path="/*" config-ref="HTTP_Listener_config">
             <http:response statusCode="#[vars.httpStatus default 200]">
@@ -10,7 +10,7 @@
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:router config-ref="insuranceapi-config"/>
+        <apikit:router config-ref="insuranceapi-config" />
         <error-handler>
             <on-error-propagate type="APIKIT:BAD_REQUEST">
                 <ee:transform>
@@ -102,7 +102,7 @@ output application/json
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:console config-ref="insuranceapi-config"/>
+        <apikit:console config-ref="insuranceapi-config" />
         <error-handler>
             <on-error-propagate type="APIKIT:NOT_FOUND">
                 <ee:transform>
@@ -119,31 +119,31 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-    <flow name="put:\api\policyAdjustment:application\json:insuranceapi-config">
-		<flow-ref doc:name="policyAdjustment" doc:id="f24eb774-9a21-4a0a-b834-6badcfcae381" name="policyAdjustment"/>
-    </flow>
-    <flow name="get:\api\downloadPolicy:insuranceapi-config">
-		<flow-ref doc:name="downloadPolicy" doc:id="75b01477-260a-4086-b2fe-6d8c0cff8fa8" name="downloadPolicy"/>
-    </flow>
     <flow name="get:\api\login:insuranceapi-config">
-		<flow-ref doc:name="login" doc:id="d9563b6f-cb0e-4d0b-ac4e-398a6b978aca" name="login"/>
+        <flow-ref doc:name="login" doc:id="d9563b6f-cb0e-4d0b-ac4e-398a6b978aca" name="login" />
     </flow>
-    <flow name="get:\api\newPolicy:insuranceapi-config">
-		<flow-ref doc:name="newPolicy" doc:id="0d1494b8-8c0a-4ec1-b9e5-8d253222ed95" name="newPolicy"/>
+    <flow name="put:\api\insurance:application\json:insuranceapi-config">
+		<flow-ref doc:name="policyAdjustment" doc:id="674248cd-4d45-44a3-b3c6-f0508d0608fe" name="policyAdjustment"/>
     </flow>
-    <flow name="get:\api\newQuote:insuranceapi-config">
-		<flow-ref doc:name="newQuote" doc:id="7c9afd61-cdd4-43b4-9e5f-92a84aaedc1a" name="newQuote"/>
+    <flow name="get:\api\insurance:insuranceapi-config">
+		<flow-ref doc:name="policyDetails" doc:id="f0c08609-fd21-4600-b587-d8becb1aae7d" name="policyDetails"/>
     </flow>
-    <flow name="get:\api\policyDetails:insuranceapi-config">
-		<flow-ref doc:name="policyDetails" doc:id="ced2475c-4929-474c-97c7-a38dd651e8cb" name="policyDetails"/>
+    <flow name="get:\api\insurance\tripList:insuranceapi-config">
+		<flow-ref doc:name="tripList" doc:id="bce93d8f-a429-42f7-8102-656453efb716" name="tripList"/>
     </flow>
-    <flow name="get:\api\tripList:insuranceapi-config">
-		<flow-ref doc:name="tripList" doc:id="fda4460c-9bb2-4e15-b82e-abedb2254163" name="tripList"/>
+    <flow name="get:\api\insurance\newPolicy:insuranceapi-config">
+		<flow-ref doc:name="newPolicy" doc:id="83424728-d856-44e6-a5e5-32ea7cbf12d5" name="newPolicy"/>
     </flow>
-    <flow name="post:\api\duiCheck:insuranceapi-config">
-		<flow-ref doc:name="duiCheck" doc:id="348a599a-3a7b-4cb4-b8ba-c06ccc49e724" name="duiCheck"/>
+    <flow name="get:\api\insurance\newQuote:insuranceapi-config">
+		<flow-ref doc:name="newQuote" doc:id="eb11ec33-5ebb-4e8a-ba2d-943e52a4e5e4" name="newQuote"/>
     </flow>
-    <flow name="post:\api\paymentGateway:insuranceapi-config">
-		<flow-ref doc:name="paymentGateway" doc:id="3e4a68bc-4780-43e8-a667-18857180f8f3" name="paymentGateway"/>
+    <flow name="get:\api\insurance\policyPdf:insuranceapi-config">
+		<flow-ref doc:name="downloadPolicy" doc:id="b7a8cfec-2e55-475f-964c-48cecbda8029" name="downloadPolicy"/>
+    </flow>
+    <flow name="post:\api\insurance\dui:insuranceapi-config">
+		<flow-ref doc:name="duiCheck" doc:id="c283ddf4-fb56-4f13-873a-3f1156424970" name="duiCheck"/>
+    </flow>
+    <flow name="post:\api\insurance\paymentGateway:insuranceapi-config">
+		<flow-ref doc:name="paymentGateway" doc:id="de358abd-8529-4a4a-9001-cf946fa4f535" name="paymentGateway"/>
     </flow>
 </mule>

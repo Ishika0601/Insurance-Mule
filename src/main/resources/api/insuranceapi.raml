@@ -22,21 +22,21 @@ types:
               example:
                 message: Invalid credentials
   
-  /tripList:
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              type: Trip[]
-              example: !include examples/tripListExample.raml
-        404:
-          body:
-            application/json:
-              example:
-                message: No trips found
+  /insurance:
+    /tripList:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                type: Trip[]
+                example: !include examples/tripListExample.raml
+          404:
+            body:
+              application/json:
+                example:
+                  message: No trips found
   
-  /policyDetails:
     get:
       responses:
         200:
@@ -50,7 +50,6 @@ types:
               example:
                 message: No insurance policy found
   
-  /policyAdjustment:
     put:
       body:
         application/json:
@@ -67,73 +66,73 @@ types:
             application/json:
               example:
                 message: Insurance policy does not exist
-  
-  /duiCheck:
-    post:
-      responses:
-        200:
-          body:
-            application/json:
-              example:
-                message: DUI check is success for traveller
-        400:
-          body:
-            application/json:
-              example:
-                message: DUI check unsuccessful
-  
-  /downloadPolicy:
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              example:
-                message: Policy PDF downloaded
-        404:
-          body:
-            application/json:
-              example:
-                message: Policy not found
-  
-  /paymentGateway:
-    post:
-      responses:
-        200:
-          body:
-            application/json:
-              example:
-                message: Payment success
-        400:
-          body:
-            application/json:
-              example:
-                message: Payment unsuccessful
 
-  /newPolicy:
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              type: NewPolicy
-              example: !include examples/newPolicyExample.raml
-        404:
-          body:
-            application/json:
-              example:
-                message: New policy not found
+    /dui:
+      post:
+        responses:
+          200:
+            body:
+              application/json:
+                example:
+                  message: DUI check is success for traveller
+          400:
+            body:
+              application/json:
+                example:
+                  message: DUI check unsuccessful
+  
+    /policyPdf:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                example:
+                  message: Policy PDF downloaded
+          404:
+            body:
+              application/json:
+                example:
+                  message: Policy not found
+  
+    /paymentGateway:
+      post:
+        responses:
+          200:
+            body:
+              application/json:
+                example:
+                  message: Payment success
+          400:
+            body:
+              application/json:
+                example:
+                  message: Payment unsuccessful
 
-  /newQuote:
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              type: PlanBenefits
-              example: !include examples/planBenefitsExample.raml
-        404:
-          body:
-            application/json:
-              example:
-                message: New quote not found
+    /newPolicy:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                type: NewPolicy
+                example: !include examples/newPolicyExample.raml
+          404:
+            body:
+              application/json:
+                example:
+                  message: New policy not found
+
+    /newQuote:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                type: PlanBenefits
+                example: !include examples/planBenefitsExample.raml
+          404:
+            body:
+              application/json:
+                example:
+                  message: New quote not found

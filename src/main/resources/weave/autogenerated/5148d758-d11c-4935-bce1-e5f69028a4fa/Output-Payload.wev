@@ -1,0 +1,19 @@
+%dw 2.0
+
+type auto_5148d758_d11c_4935_bce1_e5f69028a4fa_Output_Payload = {
+  travelPlan: String, 
+  toDate: String, 
+  policyNumber: String, 
+  destination: String, 
+  totalPremium: String, 
+  travellerOneAge: String, 
+  travellerThreeAge: String, 
+  fromDate: String, 
+  coverageAmt: String, 
+  travellerTwoAge: String, 
+  tripCost: String, 
+  newPremiumCal: String, 
+  residence: String, 
+  _?: Any
+}
+

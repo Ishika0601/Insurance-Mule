@@ -1,0 +1,15 @@
+%dw 2.0
+
+type auto_03f63657_4b42_4017_aaf8_a0a11aeae940_Output_Payload = {
+  travelPlan: String, 
+  travelToDate: String, 
+  policyNumber: String, 
+  destination: String, 
+  coverageList: Array<{    coverageAmt: String,     coverageDesc: String,     _?: Any  }>, 
+  travellerList: Array<{    firstName: String,     lastName: String,     address: String,     stateName: String,     age: Number,     email: String,     _?: Any  }>, 
+  premiumPaid: String, 
+  travelFromDate: String, 
+  totalTripCost: String, 
+  _?: Any
+}
+

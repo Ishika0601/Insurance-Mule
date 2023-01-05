@@ -30,16 +30,14 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-<<<<<<< HEAD
+
 					<classifier>mule-application</classifier>
-=======
 					<sharedLibraries>
 						<sharedLibrary>
 							<groupId>com.h2database</groupId>
 							<artifactId>h2</artifactId>
 						</sharedLibrary>
 					</sharedLibraries>
->>>>>>> branch 'master' of https://github.com/Ishika0601/Insurance-Mule.git
 				</configuration>
 			</plugin>
 		</plugins>

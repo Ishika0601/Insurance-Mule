@@ -7,4 +7,7 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="9c2baf2f-f319-4f1b-8faa-9c4346f73ab5" >
 		<db:generic-connection url="jdbc:h2:file:~/insuranceDB" driverClassName="org.h2.Driver" user="sa"/>
 	</db:config>
+	<flow name="globalFlow" doc:id="88a4e11d-b6ca-45f7-822c-0e2181523840" >
+		<db:execute-script doc:name="Execute script" doc:id="ea264953-bb52-4848-8cf5-70237030c397" config-ref="Database_Config" file="/insuranceapi/src/main/resources/data.sql"/>
+	</flow>
 </mule>

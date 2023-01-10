@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+<mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd">
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="9c2baf2f-f319-4f1b-8faa-9c4346f73ab5" >
 		<db:generic-connection url="jdbc:h2:file:~/insuranceDB" driverClassName="org.h2.Driver" user="sa"/>
 	</db:config>
 	<flow name="globalFlow" doc:id="88a4e11d-b6ca-45f7-822c-0e2181523840" >
-		<db:execute-script doc:name="Execute script" doc:id="ea264953-bb52-4848-8cf5-70237030c397" config-ref="Database_Config" file="/insuranceapi/src/main/resources/data.sql"/>
+		<db:execute-script doc:name="Execute script" doc:id="ea264953-bb52-4848-8cf5-70237030c397" config-ref="Database_Config" file="C:\data.sql"/>
 	</flow>
 </mule>

@@ -5,20 +5,4 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
-	<flow name="policyAdjustment" doc:id="525af637-30b8-4466-9727-2362f2c103a1" >
-	</flow>
-	<flow name="downloadPolicy" doc:id="7351bba3-e312-4bef-a731-52876b7931fb" >
-	</flow>
-	<flow name="newPolicy" doc:id="5148d758-d11c-4935-bce1-e5f69028a4fa" >
-	</flow>
-	<flow name="newQuote" doc:id="a1a9451f-962c-4cec-bf03-f90cd29d08f2" >
-	</flow>
-	<flow name="policyDetails" doc:id="03f63657-4b42-4017-aaf8-a0a11aeae940" >
-	</flow>
-	<flow name="tripList" doc:id="3a207f3d-45cd-4b10-817a-ed116231977a" >
-	</flow>
-	<flow name="duiCheck" doc:id="3006eab1-bdcb-43d1-816a-e48217090f77" >
-	</flow>
-	<flow name="paymentGateway" doc:id="654a84c9-6259-476f-9407-9a7b9ddac9a1" >
-	</flow>
 </mule>

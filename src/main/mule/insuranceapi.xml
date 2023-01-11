@@ -210,11 +210,8 @@ output application/json
 		<flow-ref doc:name="insuranceFlow" doc:id="a91a102b-0baf-490a-bc6f-e2ad3b4e4c7b" name="insuranceFlow"/>
     </flow>
     <flow name="get:\api\login:insuranceapi-config">
-<<<<<<< HEAD
 		<flow-ref doc:name="Flow Reference" doc:id="843604d7-9f72-49b6-93dc-e71cdd6891e3" name="globalFlow"/>
-=======
 		<flow-ref doc:name="globalFlow" doc:id="bfded5fa-7f1e-42ab-94f9-b88a986d2e4f" name="globalFlow"/>
->>>>>>> branch 'master' of https://github.com/Ishika0601/Insurance-Mule.git
     </flow>
     <flow name="get:\api\insurance\newPolicy:insuranceapi-config">
 		<flow-ref doc:name="newPolicyFlow" doc:id="ab484271-b050-4969-86bc-a10f3a987d2f" name="newPolicyFlow"/>

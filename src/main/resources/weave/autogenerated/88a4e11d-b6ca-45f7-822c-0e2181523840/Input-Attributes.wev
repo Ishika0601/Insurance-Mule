@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 %dw 2.0
 
 type auto_88a4e11d_b6ca_45f7_822c_0e2181523840_Input_Attributes = {|
@@ -21,3 +22,28 @@ type auto_88a4e11d_b6ca_45f7_822c_0e2181523840_Input_Attributes = {|
   localAddress: String
 |}
 
+=======
+%dw 2.0
+
+type auto_88a4e11d_b6ca_45f7_822c_0e2181523840_Input_Attributes = {|
+  clientCertificate?: {|
+    publicKey?: {|  |}, 
+    "type"?: String, 
+    encoded?: Binary
+  |}, 
+  headers: {|  |}, 
+  listenerPath: String, 
+  method: String, 
+  queryParams: {|  |}, 
+  queryString: String, 
+  relativePath: String, 
+  remoteAddress: String, 
+  requestPath: String, 
+  requestUri: String, 
+  scheme: String, 
+  uriParams: {|  |}, 
+  version: String, 
+  localAddress: String
+|}
+
+>>>>>>> branch 'master' of https://github.com/Ishika0601/Insurance-Mule.git

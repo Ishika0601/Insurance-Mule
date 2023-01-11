@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_0a4e5212_f2cd_45ef_bef2_1de255fdf1c7_Output_Variables_insurance = Array<{|  POLICYNUMBER?: String,   TRAVELPLAN?: String,   DESTINATION?: String,   TRAVELFROMDATE?: String,   TRAVELTODATE?: String,   TRAVELTRIPCOST?: String,   PREMIUMPAID?: String|}>
+

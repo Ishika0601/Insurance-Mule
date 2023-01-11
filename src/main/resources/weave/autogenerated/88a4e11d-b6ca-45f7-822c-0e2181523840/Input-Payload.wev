@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 %dw 2.0
 
 type auto_88a4e11d_b6ca_45f7_822c_0e2181523840_Input_Payload = Any
 
+=======
+%dw 2.0
+
+type auto_88a4e11d_b6ca_45f7_822c_0e2181523840_Input_Payload = Any
+
+>>>>>>> branch 'master' of https://github.com/Ishika0601/Insurance-Mule.git

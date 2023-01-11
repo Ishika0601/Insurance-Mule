@@ -207,7 +207,15 @@ output application/json
         </ee:transform>
     </flow>
     <flow name="get:\api\login:insuranceapi-config">
-		<flow-ref doc:name="scriptflow" doc:id="7462a893-249b-4d2d-94b8-b76d737b3697" name="globalFlow"/>
+		<ee:transform doc:name="Transform Message" doc:id="ada785a5-589a-49ab-a9aa-f189ccdc3db9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
     </flow>
     <flow name="get:\api\insurance\newPolicy:insuranceapi-config">
         <ee:transform>

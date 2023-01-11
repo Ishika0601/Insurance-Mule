@@ -1,8 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="policyAdjustFlow" doc:id="8b9b7142-a205-4410-a32d-40b2ae65ba19" >
+		<db:insert doc:name="Insert" doc:id="754946d6-87ce-4f73-a432-6b3b5ab49b48" config-ref="Database_Config">
+			<db:sql ><![CDATA[insert into traveler values (:firstName, :lastName, :age, :email, :stateName, :address);]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	firstName: payload.travellerList[2].firstName,
+	lastName: payload.travellerList[2].lastName,
+	age: payload.travellerList[2].age,
+	email: payload.travellerList[2].email,
+	stateName: payload.travellerList[2].stateName,
+	address: payload.travellerList[2].address
+}]]]></db:input-parameters>
+		</db:insert>
+		<db:update doc:name="Update" doc:id="7e37540e-c04d-4e9c-98dc-ea87c056969a" config-ref="Database_Config">
+			<db:sql ><![CDATA[update coverage set coverageamt = :coverage1 where coveragedesc='Trip Cancellation';
+update coverage set coverageamt = :coverage2 where coveragedesc='Trip Interruption';
+update coverage set coverageamt = :coverage3 where coveragedesc='Rental Car Damage Protector';
+update insuredpolicyvo set traveltripcost = :traveltripcost;
+update insuredpolicyvo set travelers = :travelers;]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	coverage1:7000,
+	coverage2:7000,
+	coverage3:154,
+	traveltripcost:20000,
+	travelers:['Alice Smith','John Smith','Cameron Smith']
+}]]]></db:input-parameters>
+		</db:update>
+		<flow-ref doc:name="Flow Reference" doc:id="6139496f-5a57-40bb-97ad-fe0e1090fb1d" name="insuranceFlow"/>
+	</flow>
+	<flow name="insuranceFlow" doc:id="0a4e5212-f2cd-45ef-bef2-1de255fdf1c7" >
+		<db:select doc:name="Select" doc:id="d9359a40-a29e-46ac-9abc-a3dbf609f5c9" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from insuredpolicyvo;]]></db:sql>
+		</db:select>
+		<set-variable value="#[payload]" doc:name="Set Variable" doc:id="9a7ba962-dbc0-4e5e-822b-ecfc950a6989" variableName="insurance"/>
+		<db:select doc:name="Select" doc:id="1ee0dab7-df41-4d7c-b2d3-073196694264" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from coverage;]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="19f2dc09-1c24-4695-941f-3004c6a2b4ab" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+vars.insurance ++ payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="tripListFlow" doc:id="415b3587-c37d-46e3-87f3-216b61148a8b" >
+		<db:select doc:name="Select" doc:id="1b0156eb-ca3e-4241-bcaf-01c537449107" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from trip;]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="c93efbf0-8bf4-4dc2-9fd3-f576c02849eb" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="newQuoteFlow" doc:id="91cac80b-5685-44fd-a618-29e20eeedd13" >
+		<db:select doc:name="Select" doc:id="7b69cbb1-cfd7-43f3-9e16-8a0909ed69a4" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from oldplanbenefits union select * from newplanbenefits;]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="831a3ad2-f257-4483-b4b6-492f704168d3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="newPolicyFlow" doc:id="cb34b9e8-effe-408d-be4c-a1beac409d42" >
+		<db:select doc:name="Select" doc:id="5a3ccb24-09c9-4306-8856-4ea2fc945fad" config-ref="Database_Config" >
+			<db:sql ><![CDATA[select * from newpolicy;]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="3cd555fc-d3b9-4b70-ab69-05338fe696c3" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="policyPdfFlow" doc:id="4f9550da-96f4-407a-b0c9-a73efcb0e1f9" >
+		<set-payload value="Policy PDF downloaded" doc:name="Set Payload" doc:id="3595401a-e7b4-48b8-b0d8-4d317a609064" />
+	</flow>
+	<flow name="duiCheckFlow" doc:id="d6b24789-0ce5-4838-bb2e-e332c810b942" >
+		<set-payload value="DUI check successful" doc:name="Set Payload" doc:id="efdf85d6-9641-48ba-b521-7c00aa9cfe88" />
+	</flow>
+	<flow name="paymentFlow" doc:id="98703e93-2708-4821-a396-c2dd65fe585f" >
+		<set-payload value="Payment successful" doc:name="Set Payload" doc:id="c0e428e0-3fa0-4971-a7e5-6f6f18a4be28" />
+	</flow>
 </mule>

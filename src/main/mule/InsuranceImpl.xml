@@ -92,11 +92,35 @@ payload]]></ee:set-payload>
 	</flow>
 	<flow name="policyPdfFlow" doc:id="4f9550da-96f4-407a-b0c9-a73efcb0e1f9" >
 		<set-payload value="Policy PDF downloaded" doc:name="Set Payload" doc:id="3595401a-e7b4-48b8-b0d8-4d317a609064" />
+		<ee:transform doc:name="Transform Message" doc:id="5070b56a-6be5-41b7-957f-c122dadcfb35" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 	<flow name="duiCheckFlow" doc:id="d6b24789-0ce5-4838-bb2e-e332c810b942" >
 		<set-payload value="DUI check successful" doc:name="Set Payload" doc:id="efdf85d6-9641-48ba-b521-7c00aa9cfe88" />
+		<ee:transform doc:name="Transform Message" doc:id="0632a9f4-404d-4017-b310-587c2102fe12" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 	<flow name="paymentFlow" doc:id="98703e93-2708-4821-a396-c2dd65fe585f" >
 		<set-payload value="Payment successful" doc:name="Set Payload" doc:id="c0e428e0-3fa0-4971-a7e5-6f6f18a4be28" />
+		<ee:transform doc:name="Transform Message" doc:id="ee75de5f-1fed-406e-8c8f-83838b5c75db" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 </mule>

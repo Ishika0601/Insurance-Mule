@@ -10,6 +10,102 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
 		<db:generic-connection url="jdbc:h2:file:~/insuranceDB" driverClassName="org.h2.Driver" user="sa" />
 	</db:config>
 	<flow name="globalFlow" doc:id="88a4e11d-b6ca-45f7-822c-0e2181523840" >
-		<db:execute-script doc:name="Execute script" doc:id="ddf86b32-0f04-4b8c-92aa-31b37e9b3146" file="C:\data.sql" config-ref="Database_Config"/>
+		<db:execute-script doc:name="Execute script" doc:id="ddf86b32-0f04-4b8c-92aa-31b37e9b3146" config-ref="Database_Config">
+			<db:sql ><![CDATA[create table traveler (
+	firstName varchar(10),
+	lastName varchar(10),
+	age int,
+	email varchar(30),
+	stateName varchar(20),
+	address varchar(50)
+);
+insert into traveler values ('Alice','Smith',40,'AliceSmith@abc.com','New York','812, Albany Shaker Road, Albany, NY, 12211, USA');
+insert into traveler values ('John','Smith',45,'JohnSmith@abc.com','New York','812, Albany Shaker Road, Albany, NY, 12211, USA');
+
+create table trip (
+	tripName varchar(20)
+);
+insert into trip values ('Canada - Oct-22');
+insert into trip values ('Greece - April-22');
+insert into trip values ('USA Vermont - Nov-21');
+insert into trip values ('Spain - May-19');
+
+create table policy (
+	policyNumber varchar(20),
+	travelPlan varchar(20)
+);
+insert into policy values ('US-CN-1290991','One Trip Basic');
+
+create table coverage (
+	coverageAmt varchar(15),
+	coverageDesc varchar(50)
+);
+insert into coverage values ('8000','Trip Interruption');
+insert into coverage values ('8000','Trip Cancellation');
+insert into coverage values ('10000','Emergency Medical');
+insert into coverage values ('50000','Emergency Medical Transportation');
+insert into coverage values ('500','Baggage Loss/Damage');
+insert into coverage values ('300','Travel Delay');
+insert into coverage values ('0','24-Hr Hotline Assistance');
+insert into coverage values ('77','Rental Car Damage Protector');
+
+
+create table oldplanbenefits (
+	tripCancel varchar(10),
+	tripInterrupt varchar(10),
+	emergencyMedical varchar(10),
+	emergencyMedicalTransport varchar(10),
+	baggageLoss varchar(10),
+	travelDelay varchar(10),
+	hotlineAssistance varchar(10),
+	totalTripCost varchar(10),
+	RentalCarDamageProtector varchar(10),
+	PremiumPaid varchar(10)
+);
+insert into oldplanbenefits values ('$8,000','$8,000','$10,000','$50,000','$500','$300','Included','$15,000','$0','$590');
+
+create table newplanbenefits (
+	tripCancel varchar(10),
+	tripInterrupt varchar(10),
+	emergencyMedical varchar(10),
+	emergencyMedicalTransport varchar(10),
+	baggageLoss varchar(10),
+	travelDelay varchar(10),
+	hotlineAssistance varchar(10),
+	totalTripCost varchar(10),
+	RentalCarDamageProtector varchar(10),
+	PremiumPaid varchar(10)
+);
+insert into newplanbenefits values ('$7,000','$7,000','$10,000','$50,000','$500','$300','Included','$20,000','$154','$771');
+
+create table newPolicy (
+    policyNumber varchar(20),
+    travelPlan varchar(20),
+    newPremiumCal varchar(20),
+    coverageAmt varchar(20),
+    destination varchar(20),
+    fromDate varchar(20),
+    toDate varchar(20),
+    tripCost varchar(20),
+    travellerOneAge int,
+    travellerTwoAge int,
+    travellerThreeAge int,
+    residence varchar(20),
+    totalPremium varchar(20)
+);
+insert into newPolicy values ('US-CN-1290991','One Trip Basic','$771','$154','Canada','15-10-2022','28-10-2022','$20,000','42','45','23','NewYork','$925');
+
+create table InsuredPolicyVO (
+     policyNumber varchar(20),
+     travelPlan varchar(20),
+     destination varchar(20),
+     travelFromDate varchar(20),
+     travelToDate varchar(20),
+     travelTripCost varchar(20),
+     premiumPaid varchar(20),
+	 travelers varchar(20) ARRAY
+);
+insert into InsuredPolicyVO values ('US-CN-1290991','One Trip Basic','Canada','15-10-2022','21-10-2022','$15000','$771',ARRAY['Alice Smith','John Smith']);]]></db:sql>
+		</db:execute-script>
 	</flow>
 </mule>
